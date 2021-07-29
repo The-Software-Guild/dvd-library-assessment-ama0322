@@ -64,9 +64,17 @@ public interface DvdLibraryDao {
     Dvd getDvd(String title);
 
 
+    // Turn a line from file into Dvd object
+    Dvd unmarshallDvd(String dvdAsText);
     
+    // Load dvd collectoin from file
+    void loadRoster() throws DvdLibraryDaoException;
     
+    // Turn Dvd object into a string
+    String marshallStudent(Dvd dvd);
     
+    // Save dvd collection into file
+    void writeRoster() throws DvdLibraryDaoException;
     
     
     

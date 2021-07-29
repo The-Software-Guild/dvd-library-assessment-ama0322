@@ -6,6 +6,8 @@
 package dvdlibrary.runner;
 
 import dvdlibrary.controller.*;
+import dvdlibrary.dao.*;
+import dvdlibrary.ui.*;
 
 /**
  *
@@ -15,8 +17,8 @@ public class App {
     
     
     
-    public static void main(String[] args) {
-        DvdLibraryController controller = new DvdLibraryController();
+    public static void main(String[] args) throws DvdLibraryDaoException {
+        DvdLibraryController controller = new DvdLibraryController(new DvdLibraryView(new UserIOConsoleImpl()), new DvdLibraryDaoImpl());
         controller.run();
     }
     

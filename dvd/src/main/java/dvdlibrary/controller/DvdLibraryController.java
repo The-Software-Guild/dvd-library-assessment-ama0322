@@ -17,14 +17,21 @@ import java.util.*;
  */
 public class DvdLibraryController {
     
+    private DvdLibraryView view;
+    private DvdLibraryDao dao;
+    
+    public DvdLibraryController(DvdLibraryView view, DvdLibraryDaoImpl dao){
+        this.view = view;
+        this.dao = dao;
+    }
     
     
-    private UserIO io = new UserIOConsoleImpl();
-    private DvdLibraryView view = new DvdLibraryView();
-    private DvdLibraryDao dao = new DvdLibraryDaoImpl();
-    
-    
-    public void run() {
+    public void run() throws DvdLibraryDaoException{
+        
+        // Load the dvds from the save file
+        dao.loadRoster();
+        
+        // Go through loop of processing user input
         boolean keepGoing = true;
         int menuSelection = 0;
         while (keepGoing) {
@@ -45,7 +52,7 @@ public class DvdLibraryController {
                 
                 // Use case 3, edit a dvd
                 case 3:
-                    io.print("EDIT DVD");
+                    editDvd();
                     break;
                 
                 // Use case 4, list all dvds
@@ -126,10 +133,9 @@ public class DvdLibraryController {
     }
 
     // USE CASE: 6, SAVE and exit
-    private void saveAndExit() {
+    private void saveAndExit() throws DvdLibraryDaoException {
         
-        // TODO: Save the contents of the DAO to file
-        
+        dao.writeRoster();
         view.displayExitBanner();
     }
     

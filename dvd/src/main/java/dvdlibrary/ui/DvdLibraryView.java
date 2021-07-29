@@ -16,7 +16,11 @@ import java.util.*;
 public class DvdLibraryView {
     
     
-    private UserIO io = new UserIOConsoleImpl();
+    private UserIO io;
+    
+    public DvdLibraryView(UserIO io){
+        this.io = io;
+    }
     
     
     // Print Menu
